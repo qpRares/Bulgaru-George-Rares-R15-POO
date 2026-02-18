@@ -1,0 +1,170 @@
+//1
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+FILE* fp = fopen("ini.txt","r");
+int nr,s,i;
+char cuv[200][200];
+
+int stringtonumber(char *a)
+{
+    int nr = 0;
+    int i = 0;
+    while(a[i]!='\0')
+    {
+        nr = nr * 10 + a[i] - '0';
+        i++;
+    }
+    return nr;
+}
+int main()
+{
+    char nr[300];
+    while(fscanf(fp,"%s",nr)==1)
+    {
+        s += stringtonumber(nr);
+    }
+    printf("%d \n",s);
+    return 0;
+}
+
+-------------------------------------
+//2
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+int i;
+char cuv[200][200];
+int main()
+{
+    char c[3000];
+    scanf("%[^\n]",c);
+    char *p;
+    p=strtok(c," ");
+    while(p)
+    {
+        strcpy(cuv[i++],p);
+        p=strtok(NULL," ");
+    }
+    for(int j=0;j<i;j++)
+        for(int k=j+1;k<i;k++)
+            if(strlen(cuv[j])<strlen(cuv[k]))
+                swap(cuv[j],cuv[k]);
+            else if( strlen(cuv[j]) == strlen(cuv[k]) && strcmp(cuv[i],cuv[j])>0)
+                swap(cuv[j],cuv[k]);
+    for(int j=0;j<i;j++)
+        printf("%s\n",cuv[j]);
+    return 0;
+}
+---------------------
+//3
+
+#include <iostream>
+using namespace std;
+
+bool isPrime(int n)
+{
+    for (int tr = 2; tr < n / 2; tr++)
+        if ((n % tr ) == 0)
+            return false;
+    return true;
+}
+int main()
+{
+    int n;
+    std::cout << "Enter a number:";
+    std::cin >> n;
+    if (isPrime(n))
+        std::cout << n << " is prime !";
+    else 
+        std::cout << n << " is NOT prime !";
+    return 0;
+}
+----------------------
+//Extra
+//Header
+
+#pragma once
+
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX 1000
+
+enum VALORI {
+    INMULTIRE = 0,
+    SUMA = 1,
+    REZERVAT1 = 2,
+    DIFERENTA = 3,
+    REZERVAT2 = 4,
+    IMPARTIRE = 5
+};
+
+typedef int (*func)(int, int);
+
+struct Content {
+    int p1;
+    int p2;
+};
+
+int Sum(int a, int b);
+int Dif(int a, int b);
+int Mul(int a, int b);
+int Div(int a, int b);
+
+------------------------
+//Cod
+#include "header.h"
+
+int Sum(int a, int b) { return a + b; }
+int Dif(int a, int b) { return a - b; }
+int Mul(int a, int b) { return a * b; }
+int Div(int a, int b) { return a / b; }
+
+int main(int argc, char* argv[])
+{
+    char input[] = "---H***E+++L+++L///O---P+++O/+-**O---";
+
+    func Operatori[4] = {Sum, Dif, Mul, Div};
+    int S = 0, V = 0;
+    Content x;
+    int idx;
+    for (int i = 0; i < strlen(input); i++)
+    {
+        switch (input[i] - 42)
+        {
+            case INMULTIRE:
+                idx = 2;
+                x.p1 = 3;
+                x.p2 = 3;
+            break;
+            case SUMA:
+                idx = 0;
+                x.p1 = 7;
+                x.p2 = 5;
+            break;
+            case DIFERENTA:
+                idx = 1;
+                x.p1 = 10;
+                x.p2 = 1;
+            break;
+            case IMPARTIRE:
+                idx = 3;
+                x.p1 = 8;
+                x.p2 = 4;
+            break;
+        }
+
+        S = S + Operatori[idx](x.p1, x.p2);
+    }
+
+    //S=337
+    printf("S = %d\n", S);
+
+    return 0;
+}
+
