@@ -3,42 +3,42 @@
 
 int Math::Add(int a, int b)
 {
-    return a + b;
+    return static_cast<int>(a + b);
 }
 
 int Math::Add(int a, int b, int c)
 {
-    return a + b + c;
+    return static_cast<int>(a + b + c);
 }
 
 int Math::Add(double a, double b)
 {
-    return a + b;
+    return static_cast<int>(a + b);
 }
 
 int Math::Add(double a, double b, double c)
 {
-    return a + b + c;
+    return static_cast<int>(a + b + c);
 }
 
 int Math::Mul(int a, int b)
 {
-    return a * b;
+    return static_cast<int>(a * b);
 }
 
 int Math::Mul(int a, int b, int c)
 {
-    return a * b * c;
+    return static_cast<int>(a * b * c);
 }
 
 int Math::Mul(double a, double b)
 {
-    return a * b;
+    return static_cast<int>(a * b);
 }
 
 int Math::Mul(double a, double b, double c)
 {
-    return a * b * c;
+    return static_cast<int>(a * b * c);
 }
 
 int Math::Add(int count, ...)
@@ -54,7 +54,7 @@ int Math::Add(int count, ...)
             s += val;
         }
     va_end(args);
-    return s;
+    return static_cast<int>(s);
 }
 
 char* Math::Add(const char *a, const char *b)
@@ -80,5 +80,6 @@ char* Math::Add(const char *a, const char *b)
         j++;
     }
     sum[i] = '\0';
-    return sum;
+    return static_cast<char *>(sum);
 }
+
