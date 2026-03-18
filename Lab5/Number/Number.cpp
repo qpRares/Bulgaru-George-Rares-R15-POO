@@ -135,6 +135,19 @@ Number& Number::operator =(const Number & a)
     return *this;
 }
 
+Number& Number::operator =(Number&& a)
+{
+    if (this != &a)
+    {
+        this->nr = a.nr;
+        this->base = a.base;
+
+        a.nr = 0;
+        a.base = 0;
+    }
+    return *this;
+}
+
 Number& Number::operator =(int a)
 {
     this->nr = a;
