@@ -27,6 +27,15 @@ Number::Number(const Number & a)
     this->base = a.base;
 }
 
+Number::Number(Number&& a)
+{
+    this->nr = a.nr;
+    this->base = a.base;
+
+    a.nr = 0;
+    a.base = 0;
+}
+
 Number::Number(int a)
 {
     this->nr = a;
