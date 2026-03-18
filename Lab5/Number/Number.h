@@ -23,6 +23,7 @@ public:
    bool operator ==(const Number & a);
    Number& operator +=(const Number & a);
    Number& operator =(const Number & a);
+   Number& operator =(Number&& other);
    Number& operator =(int value);
    Number& operator =(const char* value);
    Number& operator --();
