@@ -10,6 +10,7 @@ public:
 
    // add operators and copy/move constructor
    Number(const Number & a);
+   Number(Number&& other);
    Number(int a);
    friend Number operator +(const Number & a, const Number & b);
 
